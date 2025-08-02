@@ -1,0 +1,17 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "constplay",
+      "constplay.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/constness",
+    "file": "/home/a7/dev/cpp-cern/exercises/constness/constplay.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/constness/constplay"
+  }
+]

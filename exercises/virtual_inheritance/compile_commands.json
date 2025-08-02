@@ -1,0 +1,32 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "-fPIC",
+      "-o",
+      "libtextbox.so",
+      "TextBox.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/virtual_inheritance",
+    "file": "/home/a7/dev/cpp-cern/exercises/virtual_inheritance/TextBox.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/virtual_inheritance/libtextbox.so"
+  },
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-Wall",
+      "-Wextra",
+      "libtextbox.so",
+      "-o",
+      "trymultiherit",
+      "trymultiherit.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/virtual_inheritance",
+    "file": "/home/a7/dev/cpp-cern/exercises/virtual_inheritance/trymultiherit.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/virtual_inheritance/trymultiherit"
+  }
+]
