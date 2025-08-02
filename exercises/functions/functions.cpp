@@ -18,16 +18,23 @@
 
 #include <iostream> // For printing
 
-void printName(FastToCopy argument) {
+void printName(FastToCopy argument)
+{
     std::cout << argument.name << '\n';
 }
 
-int main() {
-    FastToCopy fast = {"Fast"};
+void printName(const SlowToCopy& a)
+{
+    std::cout << a.name << "\n";
+}
+
+int main()
+{
+    FastToCopy fast = { "Fast" };
     printName(fast);
 
-    SlowToCopy slow = {"Slow"};
-    // print it here
+    const SlowToCopy slow = { "Slow" };
+    printName(slow);
 
     return 0;
 }
