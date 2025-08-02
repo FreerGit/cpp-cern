@@ -1,19 +1,13 @@
-#include "OrderedVector.hpp"
 #include "Complex.hpp"
-#include <string>
-#include <iostream>
+#include "OrderedVector.hpp"
 #include <algorithm>
+#include <iostream>
 #include <ranges>
+#include <string>
 
 struct ReverseStringLess {
-    bool operator() (const std::string &s, const std::string &t) const {
-        // TODO: compare reversed strings
-        // hint: you can use:
-        // - std::views::reverse
-        // - std::ranges::lexicographical_compare
-        // or, if your compiler does not support those yet,
-        // take copies of the strings and reverse them using std::reverse
-        return s < t;
+    bool operator()(const std::string &s, const std::string &t) const {
+        return std::ranges::lexicographical_compare(std::views::reverse(s), std::views::reverse(t));
     }
 };
 
@@ -38,14 +32,25 @@ int main() {
     std::cout << "\n\n";
 
     // TODO: Demonstrate OrderedVector with Complex as element type similar to above
+    OrderedVector<Complex> vc(3);
+    vc.add(Complex_t<float>(1., 0.));
+    vc.add(Complex_t<float>(2., 0.));
+    vc.add(Complex_t<float>(3., 0.));
 
-
-    // TODO: Extend OrderedVector to allow to customize the ordering via an additional template paramter.
+    // TODO: Extend OrderedVector to allow to customize the ordering via an additional template
+    // paramter.
     //       Then, demonstrate the new functionality by ordering an OrderedVector<std::string>,
     //       where the strings are compared starting at their last letters.
 
-
+    std::cout << "String\n";
+    OrderedVector<std::string, ReverseStringLess> vss(5);
+    vss.add(std::string("one"));
+    vss.add(std::string("two"));
+    vss.add(std::string("three"));
+    vss.add(std::string("four"));
+    vss.add(std::string("five"));
+    for (int i = 0; i < 5; i++)
+        std::cout << vss[i] << " ";
+    std::cout << "\n\n";
     // TODO: Order an OrderedVector of Complex based on the Manhattan distance
-
-
 }

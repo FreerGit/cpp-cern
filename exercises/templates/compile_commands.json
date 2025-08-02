@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++20",
+      "-g",
+      "-O0",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "playwithsort",
+      "playwithsort.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/templates",
+    "file": "/home/a7/dev/cpp-cern/exercises/templates/playwithsort.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/templates/playwithsort"
+  }
+]
