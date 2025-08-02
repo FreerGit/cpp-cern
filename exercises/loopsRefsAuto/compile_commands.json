@@ -1,0 +1,17 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++17",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "loopsRefsAuto",
+      "loopsRefsAuto.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/loopsRefsAuto",
+    "file": "/home/a7/dev/cpp-cern/exercises/loopsRefsAuto/loopsRefsAuto.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/loopsRefsAuto/loopsRefsAuto"
+  }
+]

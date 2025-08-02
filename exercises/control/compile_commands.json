@@ -1,0 +1,18 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "--std=c++17",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "control",
+      "control.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/control",
+    "file": "/home/a7/dev/cpp-cern/exercises/control/control.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/control/control"
+  }
+]
