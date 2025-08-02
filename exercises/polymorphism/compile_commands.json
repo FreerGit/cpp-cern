@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++11",
+      "-Wsuggest-override",
+      "-g",
+      "-Wall",
+      "-Wextra",
+      "libpoly.so",
+      "-o",
+      "trypoly",
+      "trypoly.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/polymorphism",
+    "file": "/home/a7/dev/cpp-cern/exercises/polymorphism/trypoly.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/polymorphism/trypoly"
+  }
+]
