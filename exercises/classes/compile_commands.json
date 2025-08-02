@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-std=c++17",
+      "-O0",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "classes",
+      "classes.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/classes",
+    "file": "/home/a7/dev/cpp-cern/exercises/classes/classes.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/classes/classes"
+  }
+]
