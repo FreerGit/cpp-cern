@@ -1,0 +1,18 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-std=c++20",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "problem5",
+      "problem5.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/smartPointers",
+    "file": "/home/a7/dev/cpp-cern/exercises/smartPointers/problem5.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/smartPointers/problem5"
+  }
+]

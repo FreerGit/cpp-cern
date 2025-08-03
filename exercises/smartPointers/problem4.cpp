@@ -1,9 +1,9 @@
 
 
-#include <iostream>
 #include <array>
+#include <iostream>
+#include <memory>
 #include <vector>
-
 
 /* --------------------------------------------------------------------------------------------
  * Smart pointers as class members.
@@ -31,34 +31,31 @@
 
 struct LargeObject {
 
-    std::array<double, 100000> data ;
-
-} ;
+    std::array<double, 100000> data;
+};
 
 class Owner {
 
-  // MAKE YOUR CHANGES IN THIS CLASS
+    // MAKE YOUR CHANGES IN THIS CLASS
 
   public:
-
-    Owner() : _largeObject( new LargeObject() ) {}
-    LargeObject * getLargeObject() { return _largeObject ; }
-    ~Owner() { delete _largeObject ; }
+    Owner() : _largeObject(std::shared_ptr<LargeObject>()) {}
+    LargeObject *getLargeObject() {
+        return _largeObject.get();
+    }
 
   private:
-
-    LargeObject * _largeObject ;
-
-} ;
+    std::shared_ptr<LargeObject> _largeObject;
+};
 
 void doStuff() {
 
-    std::vector<Owner> owners ;
+    std::vector<Owner> owners;
 
-    for ( int i = 0 ; i < 5 ; ++i ) {
-        Owner owner ;
+    for (int i = 0; i < 5; ++i) {
+        Owner owner;
         // ... additional owner setup ...
-        owners.push_back(owner) ;
+        owners.push_back(owner);
     }
 
     /* Now we have a problem:
@@ -69,11 +66,9 @@ void doStuff() {
      * using move semantics or using shared_ptr.
      * Here, we want to go for shared_ptr.
      */
-
 }
 
 int main() {
 
-    doStuff() ;
-
+    doStuff();
 }

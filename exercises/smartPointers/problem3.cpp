@@ -1,11 +1,11 @@
 
 
-#include <iostream>
-#include <array>
-#include <vector>
-#include <random>
 #include <algorithm>
-
+#include <array>
+#include <iostream>
+#include <memory>
+#include <random>
+#include <vector>
 
 /* --------------------------------------------------------------------------------------------
  * Shared ownership.
@@ -28,44 +28,45 @@
  * --------------------------------------------------------------------------------------------
  */
 
-
 // The class LargeObject emulates a large object.
 // One should avoid to copy it, and rather use
 // a pointer to pass it around.
 
 struct LargeObject {
 
-    std::array<double, 100000> data ;
+    std::array<double, 100000> data;
 
     // So to check for some potential memory leak,
     // we count the constructions and destructions
     inline static std::size_t count = 0;
-    LargeObject() { count++ ; }
-    ~LargeObject() { count-- ; }
-
-} ;
+    LargeObject() {
+        count++;
+    }
+    ~LargeObject() {
+        count--;
+    }
+};
 
 // This removes an element from a non-owning vector,
 // in a random place. Such elements can by known in
 // several vectors, so they must not be deleted.
 
-void removeRandom( std::vector<LargeObject *> & collection, std::default_random_engine & engine ) {
+void removeRandom(std::vector<std::shared_ptr<LargeObject>> &collection,
+                  std::default_random_engine &engine) {
 
     // MAKE YOUR CHANGES IN THIS FUNCTION
 
-    auto pos = collection.begin() + engine() % collection.size() ;
+    auto pos = collection.begin() + engine() % collection.size();
     collection.erase(pos);
-
 }
 
 // A function to do something with a large object.
 // Note that since we don't own the object,
 // we don't need a smart pointer as argument.
 
-void changeLargeObject( LargeObject & object ) {
+void changeLargeObject(LargeObject &object) {
 
-    object.data[0] = 1. ;
-
+    object.data[0] = 1.;
 }
 
 // Global stuff: we have pointers to objects duplicated in two different collections.
@@ -78,14 +79,14 @@ void doStuff() {
 
     // Prepare a non deterministic random engine
 
-    std::random_device device ;
-    std::default_random_engine engine(device()) ;
+    std::random_device device;
+    std::default_random_engine engine(device());
 
     // Original collection
 
-    std::vector<LargeObject*> objVector(10);
-    for ( auto & ptr : objVector ) {
-        ptr = new LargeObject();
+    std::vector<std::shared_ptr<LargeObject>> objVector(10);
+    for (auto &ptr : objVector) {
+        ptr = std::make_shared<LargeObject>();
     }
 
     // Let's copy the whole collection
@@ -94,32 +95,30 @@ void doStuff() {
 
     // Random work with the objects
 
-    removeRandom(objVector,engine);
-    removeRandom(objVectorCopy,engine);
-    removeRandom(objVectorCopy,engine);
+    removeRandom(objVector, engine);
+    removeRandom(objVectorCopy, engine);
+    removeRandom(objVectorCopy, engine);
     // ...
-    for (auto objPtr : objVector ) {
-        changeLargeObject(*objPtr) ;
+    for (auto objPtr : objVector) {
+        changeLargeObject(*objPtr);
     }
 
     // ONCE YOU FIXED CODE ABOVE WITH SHARED POINTERS
     // THE UGLY CODE BELOW SHOULD BECOME UNNECESSARY
 
-    for ( auto objPtr : objVector ) {
-        delete objPtr ;
-    }
-    for ( auto objPtr : objVectorCopy ) {
-        // If the element is in the original collection, it was already deleted.
-        if (std::find(objVector.begin(), objVector.end(), objPtr) == objVector.end()) {
-            delete objPtr;
-        }
-    }
-
+    // for (auto objPtr : objVector) {
+    //     delete objPtr;
+    // }
+    // for (auto objPtr : objVectorCopy) {
+    //     // If the element is in the original collection, it was already deleted.
+    //     if (std::find(objVector.begin(), objVector.end(), objPtr) == objVector.end()) {
+    //         delete objPtr;
+    //     }
+    // }
 }
 
 int main() {
 
-    doStuff() ;
-    std::cout<<"Leaked large objects: "<<LargeObject::count<<std::endl ;
-
+    doStuff();
+    std::cout << "Leaked large objects: " << LargeObject::count << std::endl;
 }

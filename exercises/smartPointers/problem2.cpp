@@ -1,9 +1,9 @@
 
 
-#include <iostream>
 #include <array>
+#include <iostream>
+#include <memory>
 #include <vector>
-
 
 /* --------------------------------------------------------------------------------------------
  * Collections of smart pointers.
@@ -23,66 +23,65 @@
  * --------------------------------------------------------------------------------------------
  */
 
-
 // The class LargeObject emulates a large object.
 // One should avoid to copy it, and rather use
 // a pointer to pass it around.
 
 struct LargeObject {
 
-    std::array<double, 100000> data ;
+    std::array<double, 100000> data;
 
     // So to check for some potential memory leak,
     // we count the constructions and destructions
     inline static std::size_t count = 0;
-    LargeObject() { count++ ; }
-    ~LargeObject() { count-- ; }
-
-} ;
+    LargeObject() {
+        count++;
+    }
+    ~LargeObject() {
+        count--;
+    }
+};
 
 // A factory function to create large objects.
 
-LargeObject * newLargeObject() {
+std::unique_ptr<LargeObject> newLargeObject() {
 
     // MAKE YOUR CHANGES IN THIS FUNCTION
 
-    auto object = new LargeObject() ;
+    auto object = std::make_unique<LargeObject>();
     // Imagine there is more setup steps of "object" here
     // ...
-    return object ;
-
+    return object;
 }
 
 // A function to do something with the objects.
 // Note that since we don't own the object,
 // we don't need a smart pointer as argument.
 
-void changeLargeObject( LargeObject & object ) {
+void changeLargeObject(LargeObject &object) {
 
-    object.data[0] = 1. ;
-
+    object.data[0] = 1.;
 }
 
 void doStuff() {
 
     // MAKE YOUR CHANGES IN THIS FUNCTION
 
-    std::vector<LargeObject *> largeObjects ;
+    std::vector<std::unique_ptr<LargeObject>> largeObjects;
 
-    for ( unsigned int i = 0 ; i < 10 ; ++i ) {
-        auto newObj = newLargeObject() ;
+    for (unsigned int i = 0; i < 10; ++i) {
+        auto newObj = newLargeObject();
         // ... additional newObj setup ...
-        largeObjects.push_back(newObj) ;
+        largeObjects.push_back(std::move(newObj));
     }
 
-    for ( const auto & obj : largeObjects ) {
-        changeLargeObject(*obj) ;
+    for (const auto &obj : largeObjects) {
+        changeLargeObject(*obj);
     }
 }
 
 int main() {
 
-    doStuff() ;
-    std::cout<<"Leaked large objects: "<<LargeObject::count<<std::endl ;
-
+    doStuff();
+    std::cout << "Leaked large objects: " << LargeObject::count << std::endl;
 }
