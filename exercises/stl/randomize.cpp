@@ -1,34 +1,38 @@
-#include <iostream>
+#include "Complex.hpp"
 #include <algorithm>
-#include <vector>
+#include <iostream>
 #include <numeric>
 #include <random>
-#include "Complex.hpp"
+#include <vector>
 
-template<typename T>
-void compute(int len, T initial, T step) {
+template <typename T> void compute(int len, T initial, T step) {
     // allocate vectors
-    std::vector<T> v(len+1), diffs(len+1);
+    std::vector<T> v(len + 1), diffs(len + 1);
 
     // fill and randomize v
-    std::generate(, , [](...) { ...; });
-    std::shuffle(..., std::default_random_engine{});
+    std::generate(v.begin(), v.end(), [value = initial, step]() mutable {
+        const T cur = value;
+        value += step;
+        return cur;
+    });
+    std::shuffle(v.begin(), v.end(), std::default_random_engine{});
 
     // compute differences
-    std::adjacent_difference(...);
+    std::adjacent_difference(v.begin(), v.end(), diffs.begin());
 
     // compute standard deviation of all differences
-    const T sum = std::reduce(...);
-    const T sumsq = std::accumulate(..., [](...) { ...; });
-    const T mean = sum/len;
-    const T variance = sumsq/len - mean*mean;
+    const T sum = std::reduce(diffs.begin() + 1, diffs.end());
+    const T sumsq = std::accumulate(diffs.begin() + 1, diffs.end(), T(),
+                                    [](const T &s, const T &a) { return s + a * a; });
+    const T mean = sum / len;
+    const T variance = sumsq / len - mean * mean;
 
-    std::cout << "Range = [" << initial << ", " << step*len << "]\n"
+    std::cout << "Range = [" << initial << ", " << step * len << "]\n"
               << "Mean = " << mean << '\n'
               << "Variance = " << variance << '\n';
 }
 
 int main() {
     compute(1000, 0.0, 7.0);
-    // call compute here with Complex
+    compute(1000, Complex(0, 0), Complex(1, 2));
 }
