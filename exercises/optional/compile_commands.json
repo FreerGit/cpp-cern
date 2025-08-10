@@ -1,0 +1,18 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-std=c++20",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "optional",
+      "optional.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/optional",
+    "file": "/home/a7/dev/cpp-cern/exercises/optional/optional.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/optional/optional"
+  }
+]

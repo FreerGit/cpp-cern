@@ -1,0 +1,19 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-std=c++17",
+      "-O2",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "trymove",
+      "trymove.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/move",
+    "file": "/home/a7/dev/cpp-cern/exercises/move/trymove.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/move/trymove"
+  }
+]
