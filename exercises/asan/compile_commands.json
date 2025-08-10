@@ -1,0 +1,18 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-std=c++17",
+      "-fsanitize=address",
+      "-fno-omit-frame-pointer",
+      "-g",
+      "-o",
+      "asan",
+      "asan.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/asan",
+    "file": "/home/a7/dev/cpp-cern/exercises/asan/asan.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/asan/asan"
+  }
+]
