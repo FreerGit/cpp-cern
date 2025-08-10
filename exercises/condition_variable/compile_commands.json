@@ -1,0 +1,20 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/g++",
+      "-c",
+      "-g",
+      "-std=c++17",
+      "-O0",
+      "-pthread",
+      "-Wall",
+      "-Wextra",
+      "-o",
+      "condition_variable",
+      "condition_variable.cpp"
+    ],
+    "directory": "/home/a7/dev/cpp-cern/exercises/condition_variable",
+    "file": "/home/a7/dev/cpp-cern/exercises/condition_variable/condition_variable.cpp",
+    "output": "/home/a7/dev/cpp-cern/exercises/condition_variable/condition_variable"
+  }
+]
